@@ -29,6 +29,12 @@
 //
 #include "coaa.h"
 #include "view1090.h"
+
+// Associate struct tags with struct names inside the module to prevent name
+// collisions at link time.
+struct stModes Modes;
+struct stDF tDF;
+
 //
 // ============================= Utility functions ==========================
 //

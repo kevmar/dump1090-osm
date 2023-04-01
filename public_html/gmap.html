@@ -3,9 +3,21 @@
 		<meta charset="utf-8"/>
 		<link rel="stylesheet" type="text/css" href="style.css" />
 		<link rel="stylesheet" href="http://code.jquery.com/ui/1.10.3/themes/smoothness/jquery-ui.css" />
+		<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.3/dist/leaflet.css"
+			integrity="sha256-kLaT2GOSpHechhsozzB+flnD+zUyjE2LlfWPgU04xyI="
+			crossorigin=""/>
+
 		<script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
 		<script src="//ajax.googleapis.com/ajax/libs/jqueryui/1.10.3/jquery-ui.min.js"></script>
+
+		<!-- prepare to remove this -->
 		<script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?sensor=false&amp;libraries=geometry"></script>
+		
+		<!-- Make sure you put this AFTER Leaflet's CSS -->
+		<script src="https://unpkg.com/leaflet@1.9.3/dist/leaflet.js"
+			integrity="sha256-WBkoXOwTeyKclOHuWtc+i2uENFpDZ9YPdf5Hf+D7ewM="
+		crossorigin=""></script>
+
 		<script type="text/javascript" src="config.js"></script>
 		<script type="text/javascript" src="planeObject.js"></script>
 		<script type="text/javascript" src="options.js"></script>

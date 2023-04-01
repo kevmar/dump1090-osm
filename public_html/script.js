@@ -1,5 +1,5 @@
 // Define our global variables
-var GoogleMap     = null;
+var GoogleMap     = null;  // obviously this should be renamed..
 var Planes        = {};
 var PlanesOnMap   = 0;
 var PlanesOnTable = 0;
@@ -55,6 +55,7 @@ function fetchData() {
 
 // Initalizes the map and starts up our timers to call various functions
 function initialize() {
+	/*
 	// Make a list of all the available map IDs
 	var mapTypeIds = [];
 	for(var type in google.maps.MapTypeId) {
@@ -190,6 +191,28 @@ function initialize() {
             }
         }
 	}
+	*/
+
+	GoogleMap = L.map('map_canvas').setView([51.505, -0.09], 13);
+	L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
+		maxZoom: 19,
+		attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
+	}).addTo(GoogleMap);
+	GoogleMap.on("move", function() {
+		var center = GoogleMap.getBounds().getCenter();
+        localStorage['CenterLat'] = center.lat;
+        localStorage['CenterLon'] = center.lng;
+	});
+
+
+	L.marker([51.5, -0.09]).addTo(GoogleMap)
+		.bindPopup('A pretty CSS3 popup.<br> Easily customizable.')
+		.openPopup();
+
+	L.marker([51.5, -0.19]).addTo(GoogleMap)
+		.bindPopup('A pretty CSS3 popup.<br> Easily customizable.')
+		.openPopup();
+
 	
 	// These will run after page is complitely loaded
 	$(window).load(function() {
@@ -621,9 +644,9 @@ function resetMap() {
     ZoomLvl   = Number(localStorage['ZoomLvl']) || CONST_ZOOMLVL;
     
     // Set and refresh
-	GoogleMap.setZoom(parseInt(ZoomLvl));
-	GoogleMap.setCenter(new google.maps.LatLng(parseFloat(CenterLat), parseFloat(CenterLon)));
-	
+	GoogleMap.zoomIn(parseInt(ZoomLvl));
+	GoogleMap.panTo(L.latLng(parseFloat(CenterLat), parseFloat(CenterLon)));
+
 	if (SelectedPlane) {
 	    selectPlaneByHex(SelectedPlane);
 	}
